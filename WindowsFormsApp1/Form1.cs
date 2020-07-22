@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                     return false;
                 }
             }
-           
+
             return true;
         }
 
@@ -66,31 +66,40 @@ namespace WindowsFormsApp1
 
 
             bool valid = validate(array);
-            Console.WriteLine("valid, " + valid);
-
             if (valid)
             {
-                //Cargamos las variables con los datos del form
+                String msg = "";
+                if (int.Parse(array[0]) == 0 || int.Parse(array[1]) == 0 || int.Parse(array[7]) == 0)
+                {
+                    msg = "Las patrullas, la capacidad del taller y la cantidad de días a simular deben ser mayores a 0.";
+                    valid = false;
+                    MessageBox.Show(msg);
+                }
+                else
+                {
+                    //Cargamos las variables con los datos del form
 
-                cantidadPatrullas = int.Parse(txtCantidadPatrullas.Text.Trim());
-                capacidadTaller = int.Parse(txtCapacidadTaller.Text.Trim());
-                diasEntreServicios = int.Parse(txtDiasEntreServicios.Text.Trim());
-                tiempoReparacionInf = int.Parse(txtTReparacionInf.Text.Trim());
-                tiempoReparacionSup = int.Parse(txtTReparacionSup.Text.Trim());
-                primeraRoturaInf = int.Parse(txtPrimeraRoturaInf.Text.Trim());
-                primeraRoturaSup = int.Parse(txtPrimeraRoturaSup.Text.Trim());
-                cantDiasSimulacion = int.Parse(txtCantDiasASimular.Text.Trim());
-                cantIteraciones = int.Parse(txtCantidadIteraciones.Text.Trim());
-                diaInicio = int.Parse(txtDiaInicio.Text.Trim());
-                mostrarPatrullas = checkBox1.Checked;
+                    cantidadPatrullas = int.Parse(txtCantidadPatrullas.Text.Trim());
+                    capacidadTaller = int.Parse(txtCapacidadTaller.Text.Trim());
+                    diasEntreServicios = int.Parse(txtDiasEntreServicios.Text.Trim());
+                    tiempoReparacionInf = int.Parse(txtTReparacionInf.Text.Trim());
+                    tiempoReparacionSup = int.Parse(txtTReparacionSup.Text.Trim());
+                    primeraRoturaInf = int.Parse(txtPrimeraRoturaInf.Text.Trim());
+                    primeraRoturaSup = int.Parse(txtPrimeraRoturaSup.Text.Trim());
+                    cantDiasSimulacion = int.Parse(txtCantDiasASimular.Text.Trim());
+                    cantIteraciones = int.Parse(txtCantidadIteraciones.Text.Trim());
+                    diaInicio = int.Parse(txtDiaInicio.Text.Trim());
+                    mostrarPatrullas = checkBox1.Checked;
 
 
-                //Abrimos el nuevo form y cerramos el actual
-                Form2 form2 = new Form2();
-                form2.Show();
-                this.Hide();
+                    //Abrimos el nuevo form y cerramos el actual
+                    Form2 form2 = new Form2();
+                    form2.Show();
+                    this.Hide();
 
+                }
             }
+
             else
             {
                 MessageBox.Show("Ingrese todos los campos con números enteros positivos.");
