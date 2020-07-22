@@ -29,6 +29,24 @@ namespace WindowsFormsApp1
         public static int diaInicio;
         public static bool mostrarPatrullas;
 
+        private void initValues()
+        {
+            txtCantidadPatrullas.Text = 120.ToString();
+            txtCapacidadTaller.Text = 8.ToString();
+            txtDiasEntreServicios.Text = 20.ToString();
+            txtTReparacionInf.Text = 1.ToString();
+            txtTReparacionSup.Text = 4.ToString();
+            txtPrimeraRoturaInf.Text = 1.ToString();
+            txtPrimeraRoturaSup.Text = 20.ToString();
+            txtCantDiasASimular.Text = 10.ToString();
+            txtCantidadIteraciones.Text = 10.ToString();
+            txtDiaInicio.Text = 0.ToString();
+            checkBox1.Checked = true;
+
+
+
+        }
+
 
         private bool validate(List<String> array)
         {
@@ -38,7 +56,7 @@ namespace WindowsFormsApp1
                 {
                     return false;
                 }
-                else if (float.Parse(array[i]) < 0 || !int.TryParse(array[i], out _))
+                else if (!int.TryParse(array[i], out _) || float.Parse(array[i]) < 0)
                 {
                     return false;
                 }
@@ -72,6 +90,12 @@ namespace WindowsFormsApp1
                 if (int.Parse(array[0]) == 0 || int.Parse(array[1]) == 0 || int.Parse(array[7]) == 0)
                 {
                     msg = "Las patrullas, la capacidad del taller y la cantidad de días a simular deben ser mayores a 0.";
+                    valid = false;
+                    MessageBox.Show(msg);
+                }
+                else if (int.Parse(array[8]) > 500)
+                {
+                    msg = "La cantidad de iteraciones a mostrar debe ser menor o igual a 500";
                     valid = false;
                     MessageBox.Show(msg);
                 }
@@ -147,12 +171,18 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            initValues();
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            initValues();
         }
     }
 }
